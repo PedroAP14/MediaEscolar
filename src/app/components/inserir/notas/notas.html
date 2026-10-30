@@ -1,106 +1,201 @@
-<h1 class="h3 mb-3 text-dark">Inserir Nota</h1> <!--Título Inserir Nota-->
-<div class="card shadow-sm border-0 mb-4">
-    <form class="card-body p-4">
+<div class="container py-4">
 
-        <!--div nome-->
-        <div class="mb-3">
-            <label for="nome" class="form-label fw-semibold">Nome:</label>
-            <input type="text" id="nome" class="form-control" placeholder="Informe o Nome Completo do Aluno"
-                name="nomeAluno" [(ngModel)]="nome">
-        </div>
-
-        <!--div nota1-->
-        <div class="mb-3">
-            <label for="n1" class="form-label fw-semibold">Nota 1:</label>
-            <input type="number" id="n1" class="form-control" placeholder="Informe a primeira nota do Aluno"
-                name="nota1" [(ngModel)]="n1">
-        </div>
-
-        <!--div nota2-->
-        <div class="mb-3">
-            <label for="n2" class="form-label fw-semibold">Nota 2:</label>
-            <input type="number" id="n2" class="form-control" placeholder="Informe a segunda nota do Aluno"
-                name="nota2" [(ngModel)]="n2">
-        </div>
-
-        <!--div nota3-->
-        <div class="mb-3">
-            <label for="n3" class="form-label fw-semibold">Nota 3:</label>
-            <input type="number" id="n3" class="form-control" placeholder="Informe a terceira nota do Aluno"
-                name="nota3" [(ngModel)]="n3">
-        </div>
-
-        <!--div botões-->
-        <div class="d-flex justify-content-between">
-
-            <!--Botão Restaurar Dados-->
-            <button type="button" class="btn btn-outline-secondary" (click)="restaurasDados()">
-                Restaurar Dados
-            </button>
-
-            <!--Botão Calcular-->
-            <button type="button" class="btn btn-success px-4" (click)="calcularMedia()">
-                Calcular
-            </button>
-
-        </div>
-
-    </form>
-</div>
-
-<h2 class="h3 mb-3 text-dark">Média Final</h2> <!--Título Média Final-->
-<div class="card shadow-sm border-0 mb-4">
-
-    <ul>
-
-        <!--Nome do Aluno-->
-        <li><strong>Aluno: {{nome}}</strong></li>
-
-        <!--Média do Aluno-->
-        <li><strong>Média: {{media}}</strong></li>
-
-        <!--Situação do Aluno-->
-        @if (situacao === "APROVADO") { 
-        <li><strong>Situação: <strong class="text-success">{{situacao}}</strong> </strong> </li>
-        }
-        @else if (situacao === "RECUPERAÇÃO") {
-        <li><strong>Situação: <strong class="text-warning">{{situacao}}</strong> </strong> </li>
-        }
-        @else {
-        <li><strong>Situação: <strong class="text-danger">{{situacao}}</strong> </strong> </li>
-        }
-
-    </ul>
-
-    <!--Botão Registrar-->
-    <div class="d-flex justify-content-between p-3">
-        <button type="button" class="btn btn-success px-4" (click)="registrar()">
-            Registrar
-        </button>
+    <div class="text-center mb-4">
+        <h1 class="display-6 fw-bold text-success">
+            Inserir Notas
+        </h1>
+        <p class="text-secondary">
+            Preencha os dados abaixo para calcular a média do aluno.
+        </p>
     </div>
 
-</div>
+    <div class="card shadow-sm border-0 rounded-4 mb-5">
 
-<h2 class="h3 mb-3 text-dark">Turma</h2> <!--Título Turma-->
-<div class="card shadow-sm border-0">
-    <ul>
+        <div class="card-header bg-success text-white p-3">
+            <h2 class="h5 mb-0">Dados do Aluno</h2>
+        </div>
 
-        <!--Lista dos alunos registrados-->
-        @for (aluno of turma; track $index) {
-        <li><strong>Aluno: {{aluno.nome}} - Média: {{aluno.media}}</strong></li>
-        }
+        <form class="card-body p-4">
 
-        <!--Média da turma-->
-        @if (mediaTurma !== null) {
-        <li><strong>Média da turma: {{mediaTurma}}</strong></li>
-        }
+            <div class="mb-4">
+                <label for="nome" class="form-label fw-semibold">
+                    Nome Completo:
+                </label>
 
-    </ul>
+                <input type="text" id="nome" class="form-control form-control-lg"
+                    placeholder="Informe o nome completo do aluno" name="nomeAluno" [(ngModel)]="nome">
+            </div>
 
-    <!--Botão Limpar Turma-->
-    <div class="p-3">
-        <button type="button" class="btn btn-outline-danger" (click)="restaurarTurma()">
-            Limpar Turma
-        </button>
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-4">
+                    <label for="n1" class="form-label fw-semibold">
+                        Nota 1:
+                    </label>
+
+                    <input type="number" id="n1" class="form-control form-control-lg" placeholder="Primeira nota"
+                        name="nota1" [(ngModel)]="n1">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="n2" class="form-label fw-semibold">
+                        Nota 2:
+                    </label>
+
+                    <input type="number" id="n2" class="form-control form-control-lg" placeholder="Segunda nota"
+                        name="nota2" [(ngModel)]="n2">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="n3" class="form-label fw-semibold">
+                        Nota 3:
+                    </label>
+
+                    <input type="number" id="n3" class="form-control form-control-lg" placeholder="Terceira nota"
+                        name="nota3" [(ngModel)]="n3">
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-between">
+
+                <button type="button" class="btn btn-outline-secondary px-4" (click)="restaurasDados()">
+                    Restaurar Dados
+                </button>
+
+                <button type="button" class="btn btn-success px-5" (click)="calcularMedia()">
+                    Calcular Média
+                </button>
+
+            </div>
+
+        </form>
     </div>
+
+    <h2 class="h3 fw-bold text-success mb-3">
+        Média Final
+    </h2>
+
+    <div class="card shadow-sm border-0 rounded-4 mb-5">
+
+        <div class="card-body p-4">
+
+            <h3 class="h5 fw-bold mb-4">
+                Resultado do Aluno
+            </h3>
+
+            <div class="row g-3 mb-4">
+
+
+                <div class="col-md-4">
+                    <div class="bg-light rounded-3 p-3 h-100">
+                        <p class="text-secondary mb-2">
+                            Aluno
+                        </p>
+                        <h4 class="h5 fw-bold mb-0">
+                            {{nome}}
+                        </h4>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="bg-light rounded-3 p-3 h-100">
+                        <p class="text-secondary mb-2">
+                            Média
+                        </p>
+                        <h4 class="h5 fw-bold mb-0">
+                            {{media}}
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="bg-light rounded-3 p-3 h-100">
+                        <p class="text-secondary mb-2">
+                            Situação
+                        </p>
+
+                        @if (situacao === "APROVADO") {
+                        <span class="badge bg-success fs-6">
+                            {{situacao}}
+                        </span>
+                        }
+                        @else if (situacao === "RECUPERAÇÃO") {
+                        <span class="badge bg-warning text-dark fs-6">
+                            {{situacao}}
+                        </span>
+                        }
+                        @else if (situacao === "REPROVADO") {
+                        <span class="badge bg-danger fs-6">
+                            {{situacao}}
+                        </span>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-success px-4" (click)="registrar()">
+                    Registrar Aluno
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <h2 class="h3 fw-bold text-success mb-3">
+        Turma
+    </h2>
+
+    <div class="card shadow-sm border-0 rounded-4 mb-4">
+
+        <div class="card-header bg-success text-white p-3">
+            <h3 class="h5 mb-0">Alunos Registrados</h3>
+        </div>
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-hover
+                    table-bordered text-center align-middle">
+
+                    <thead class="table-success">
+                        <tr>
+                            <th>Nome do Aluno</th>
+                            <th>Média Final</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @for (aluno of turma; track $index) {
+                        <tr>
+                            <td>{{aluno.nome}}</td>
+                            <td>{{aluno.media}}</td>
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            @if (mediaTurma !== null) {
+            <div class="alert alert-success mt-3">
+                <strong>Média Geral da Turma:</strong>
+                {{mediaTurma}}
+            </div>
+            }
+
+            <div class="text-end mt-3">
+                <button type="button" class="btn btn-outline-danger px-4" (click)="restaurarTurma()">
+                    Limpar Turma
+                </button>
+            </div>
+
+        </div>
+    </div>
+
 </div>
