@@ -1,0 +1,63 @@
+<h1 class="h3 mb-3 text-dark">Inserir Nota</h1>
+<div class="card shadow-sm border-0 mb-4">
+    <form class="card-body p-4">
+
+        <!--row nome-->
+        <div class="mb-3">
+            <label for="nome" class="form-label fw-semibold">Nome:</label>
+            <input type="text" id="nome" class="form-control" placeholder="Informe o Nome Completo do Aluno"
+                name="nomeAluno" [(ngModel)]="nome">
+        </div>
+
+        <!--row nota1-->
+        <div class="mb-3">
+            <label for="nome" class="form-label fw-semibold">Nota 1:</label>
+            <input type="number" id="n1" class="form-control" placeholder="Informe a primeira nota do Aluno"
+                name="nota1" [(ngModel)]="n1">
+        </div>
+
+        <!--row nota2-->
+        <div class="mb-3">
+            <label for="nome" class="form-label fw-semibold">Nota 2:</label>
+            <input type="number" id="n2" class="form-control" placeholder="Informe a segunda nota do Aluno" name="nota2"
+                [(ngModel)]="n2">
+        </div>
+
+        <!--row nota3-->
+        <div class="mb-3">
+            <label for="nome" class="form-label fw-semibold">Nota 3:</label>
+            <input type="number" id="n3" class="form-control" placeholder="Informe a segunda nota do Aluno" name="nota3"
+                [(ngModel)]="n3">
+        </div>
+
+        <!--row botões-->
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary" (click)="restaurasDados()">
+                Restaurar Dados
+            </button>
+            <button type="button" class="btn btn-success px-4" (click)="calcularMedia()">
+                Calcular
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<h2 class="h3 mb-3 text-dark">Média Final</h2>
+<div class="card shadow-sm border-0">
+    <ul>
+        <li><strong>Aluno: {{nome}}</strong> </li>
+        <li><strong>Média: {{media}}</strong> </li>
+        @if (situacao === "APROVADO") {
+        <li><strong>Situação: <strong class="text-success">{{situacao}}</strong> </strong> </li>
+        }
+        @else if (situacao === "RECUPERAÇÃO") {
+        <li><strong>Situação: <strong class="text-warning">{{situacao}}</strong> </strong> </li>
+        }
+        @else {
+        <li><strong>Situação: <strong class="text-danger">{{situacao}}</strong> </strong> </li>
+        }
+
+
+    </ul>
+</div>
